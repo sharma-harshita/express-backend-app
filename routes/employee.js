@@ -6,7 +6,7 @@ const employeeRouter = express.Router();
 employeeRouter.route("/details")
     .get(employeeController.employeeGet)
 
-
+ 
 
 // You dont have to change the route when you are passing the data from front end in the form of query params, because we can access those values using keys , which is part of query param only
 
