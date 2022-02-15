@@ -1,9 +1,19 @@
 const get = (req, res) => {
-    res.send([
+    console.log("hello");
+    console.log("**************REQUEST query****************", req.query);
+    console.log("**************REQUEST params****************", req.params);
+
+    const user = [
         {id:1, name:"pooja"},
         {id:2, name:"janaki"},
         {id:3, name:"mani"},
-    ])
+    ]
+    if(req.query.id){
+        const newUser = user.filter(value => value.id === Number(req.query.id))
+        res.send(newUser);
+    }else{
+        res.send(user);
+    }
 }
 
 // if you are exporting like this then you can import also with get function only
@@ -11,3 +21,9 @@ const get = (req, res) => {
 
 // if you are exporting like this then you can access by using employeeGet
 module.exports.employeeGet = get
+
+
+
+// There are two different ways how you can receive the data from the frontend
+// URL params  https://localhost:8000/api/v1/emp/12         : we are passing only an individual value
+// Query params https://localhost:8000/api/v1/emp/?name="john"&age=24      : we are passing values in key value format
